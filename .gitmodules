@@ -1,0 +1,3 @@
+[submodule "leetcode/swift"]
+	path = leetcode/swift
+	url = git@github.com:laurenchen0631/LeetCode-swift.git
