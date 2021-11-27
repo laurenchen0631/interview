@@ -1,3 +1,6 @@
 [submodule "leetcode/swift"]
 	path = leetcode/swift
 	url = git@github.com:laurenchen0631/LeetCode-swift.git
+[submodule "coding-interview-university"]
+	path = coding-interview-university
+	url = git@github.com:laurenchen0631/coding-interview-university.git
