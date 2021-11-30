@@ -59,6 +59,7 @@
         "ratio": "cpp",
         "set": "cpp",
         "fstream": "cpp"
-    }
+    },
+    "python.formatting.provider": "yapf"
 }
 
