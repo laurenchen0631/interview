@@ -3,7 +3,6 @@ class Solution:
         sortedArr = sorted(arr)
         if len(sortedArr) < 2:
             return []
-        print(sortedArr)
 
         minVal: int = abs(sortedArr[0] - sortedArr[1])
         res: list[list[int]] = []
