@@ -23,7 +23,7 @@ class Solution:
         
         return dp(0, 0, n - 1)
 
-if __name__ == '__main__':
+if __name__ == '__main__': 
     s = Solution()
     print(s.cherryPickup([[3,1,1],[2,5,1],[1,5,5],[2,1,1]]))
     print(s.cherryPickup([[1,0,0,0,0,0,1],[2,0,0,0,0,3,0],[2,0,9,0,0,0,0],[0,3,0,5,4,0,0],[1,0,2,3,0,0,6]]))
