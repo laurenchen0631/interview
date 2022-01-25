@@ -15,15 +15,15 @@ class Solution:
 
     def canJumpDP(nums: list[int]) -> int:
         n = len(nums)
-        dp = [-1] * n
-        dp[-1] = 1
+        dp = [False] * n
+        dp[-1] = True
         for i in range(n - 2, -1, -1):
-            furtherest = min(i + nums[i], n - 1)
-            for j in range(i+1, furtherest + 1):
-                if dp[j] == 1:
-                    dp[i] = 1
+            end = min(i + nums[i], n - 1)
+            for j in range(i+1, end + 1):
+                if dp[j]:
+                    dp[i] = True
                     break
-        return dp[0] == 1
+        return dp[0]
 
 if __name__ == '__main__':
     s = Solution()

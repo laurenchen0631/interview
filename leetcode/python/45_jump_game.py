@@ -6,9 +6,8 @@ class Solution:
         for i in range(len(nums)-2, -1, -1):
             if nums[i] == 0:
                 continue
-
-            pos = min(i + nums[i], len(nums) - 1)
-            dp[i] = min(dp[j] for j in range(i+1, pos+1)) + 1
+            end = min(i + nums[i], len(nums) - 1)
+            dp[i] = min(dp[j] for j in range(i+1, end+1)) + 1
         return dp[0]
     
 s = Solution()
