@@ -12,7 +12,6 @@ class Solution:
             sq = r ** 2
             for i in range(sq, n+1):
                 dp[i] = min(dp[i], 1 + dp[i-sq])
-        # print(dp)
         return dp[-1]
 
 s = Solution()
