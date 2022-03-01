@@ -20,21 +20,21 @@ class Solution:
 
     def canPartitionOpt(self, nums: list[int]) -> bool:
         # find sum of array elements
-        total_sum = sum(nums)
+        total = sum(nums)
 
         # if total_sum is odd, it cannot be partitioned into equal sum subsets
-        if total_sum % 2 != 0:
+        if total % 2 != 0:
             return False
-        subset_sum = total_sum // 2
+        target = total // 2
 
-        # construct a dp table of size (subset_sum + 1)
-        dp = [False] * (subset_sum + 1)
+        # construct a dp table of size (target + 1)
+        dp = [False] * (target + 1)
         dp[0] = True
-        for curr in nums:
-            for j in range(subset_sum, curr - 1, -1):
-                dp[j] = dp[j] or dp[j - curr]
+        for n in nums:
+            for j in range(target, n - 1, -1):
+                dp[j] = dp[j] or dp[j - n]
 
-        return dp[subset_sum]
+        return dp[target]
         
 
 if __name__ == '__main__':
