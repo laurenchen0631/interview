@@ -18,9 +18,19 @@ class Solution:
             return res
 
         return dp(1, len(nums) - 2)
+
+    def maxCoinsBottomUp(self, nums: list[int]) -> int:
+        nums = [1] + nums + [1]
+        dp = [[0] * len(nums) for _ in range(len(nums))]
+        for l in range(len(nums)-2, 0, -1):
+            for r in range(l, len(nums) - 1):
+                dp[l][r] = max((dp[l][k-1] + dp[k+1][r] + nums[k]*nums[l-1]*nums[r+1]) for k in range(l, r+1))
+        return dp[1][-2]
+
     
     
 
 if __name__ == '__main__':
     s = Solution()
     print(s.maxCoins([3,1,5,8]))
+    print(s.maxCoinsBottomUp([3,1,5,8]))
