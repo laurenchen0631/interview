@@ -8,11 +8,9 @@ class Solution:
                 if s[i-1] == s[j-1]:
                     dp[i][j] = dp[i-1][j-1] + 1
                     maximum = max(maximum, dp[i][j])
-        for r in dp:
-            print(r)
         return maximum
 
 s = Solution()
-# print(s.longestRepeatingSubstring("abbaba"))
-print(s.longestRepeatingSubstring("aabcaabdaab" ))
+print(s.longestRepeatingSubstring("abbaba"))
+# print(s.longestRepeatingSubstring("aabcaabdaab" ))
 # print(s.longestRepeatingSubstring("aaabaabbbaaabaabbaabbbabbbaaaabbaaaaaabbbaabbbbbbbbbaaaabbabbaba"))
