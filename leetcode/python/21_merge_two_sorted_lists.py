@@ -6,14 +6,12 @@ class ListNode:
 
 class Solution:
     def mergeTwoLists(self, list1: ListNode | None, list2: ListNode | None) -> ListNode | None:
-        tail = dummy = ListNode()
-        while list1 or list2:
-            if not list2 or  list1 and list1.val <= list2.val:
-                tail.next, list1 = list1, list1.next
+        cur = dummy = ListNode()
+        while list1 and list2:
+            if list1.val <= list2.val:
+                cur.next, list1 = list1, list1.next
             else:
-                tail.next, list2 = list2, list2.next
-            tail = tail.next
+                cur.next, list2 = list2, list2.next
+            cur = cur.next
+        cur.next = list1 if list1 else list2
         return dummy.next
-                
-        
-        
