@@ -1,19 +1,5 @@
 class Solution:
     def maximumUniqueSubarray(self, nums: list[int]) -> int:
-        # res = cur = 0
-        # acc: dict[int, tuple[int, int]] = {}
-        # l = -1
-        # for r in range(len(nums)):
-        #     n = nums[r]
-        #     cur += n
-        #     if n not in acc:
-        #         res = max(res, cur)
-        #     elif l < acc[n][0]:
-        #         cur -= acc[n][1]
-        #         l = acc[n][0] + 1
-        #     acc[n] = (r, cur)
-
-        # return res
         l, r, num, cur = 0, 0, set[int](), 0
         res = 0
         while r < len(nums):
