@@ -1,4 +1,7 @@
 # Definition for a binary tree node.
+import math
+
+
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
@@ -27,4 +30,22 @@ class Solution:
             return (root.val, r[1]) if root.val < r[0] else None
         else:
             return (root.val, root.val)
-        
+
+    
+    def _isValidBST(self, root: TreeNode | None) -> bool:
+        if not root:
+            return True
+
+        def validate(node: TreeNode, low: int, high: int) -> bool:
+            # Empty trees are valid BSTs.
+            if not node:
+                return True
+            # The current node's value must be between low and high.
+            if node.val <= low or node.val >= high:
+                return False
+
+            # The left and right subtree must also be valid.
+            return (validate(node.right, node.val, high) and
+                   validate(node.left, low, node.val))
+
+        return validate(root, -math.inf, math.inf)
