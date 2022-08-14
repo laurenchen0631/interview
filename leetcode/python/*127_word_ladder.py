@@ -2,6 +2,7 @@ import collections
 
 
 class Solution:
+    
     def ladderLength(self, beginWord: str, endWord: str, wordList: list[str]) -> int:
         if endWord not in wordList or not endWord or not beginWord or not wordList:
             return 0
