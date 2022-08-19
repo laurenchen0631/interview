@@ -14,8 +14,6 @@ class Solution:
             else:
                 seq = heapq.heappop(subseqs)
                 heapq.heappush(subseqs, (n, seq[1] + 1))
-            print(subseqs)
-            
         
         for seq in subseqs:
             if seq[1] < 3:
@@ -24,6 +22,5 @@ class Solution:
 
 s = Solution()
 print(s.isPossible([1,2,3,3,4,5]))
-# print(s.isPossible([1,2,3,3,4,4,5,5]))
-# print(s.isPossible([1,2,3,4,4,5,5]))
-        
+print(s.isPossible([1,2,3,3,4,4,5,5]))
+print(s.isPossible([1,2,3,4,4,5,5]))
