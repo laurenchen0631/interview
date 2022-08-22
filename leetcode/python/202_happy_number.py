@@ -1,13 +1,12 @@
 # Cycle detection
 class Solution:
     def isHappy(self, n: int) -> bool:
-        visited = set[int]([n])
-        while n != 1:
-            n = self.getSumOfDigitSquare(n)
-            if n in visited:
-                return False
+        visited = {1}
+        while n not in visited:
             visited.add(n)
-        return True
+            n = self.getSumOfDigitSquare(n)
+            print(n)
+        return n == 1
     
     def getSumOfDigitSquare(self, n: int) -> int:
         res: int = 0
@@ -17,7 +16,7 @@ class Solution:
         return res
 
 s = Solution()
-# print(s.isHappy(19))
+print(s.isHappy(19))
 # print(s.isHappy(2))
 print(s.isHappy(3))
 # print(s.isHappy(4))
