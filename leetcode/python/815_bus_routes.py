@@ -13,13 +13,11 @@ class Solution:
                 if any(r in r2 for r in r1):
                     graph[i].add(j)
                     graph[j].add(i)
-        print(graph)
 
         seen, targets = set(), set()
         for node, route in enumerate(routes):
             if source in route: seen.add(node)
             if target in route: targets.add(node)
-        print(seen, targets)
 
         queue = [(node, 1) for node in seen]
         for node, depth in queue:
