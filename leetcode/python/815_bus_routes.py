@@ -5,7 +5,6 @@ class Solution:
     def numBusesToDestination(self, routes: list[list[int]], source: int, target: int) -> int:
         if source == target: return 0
         routes = list(map(set, routes))
-        print(routes)
         graph = defaultdict(set)
         for i, r1 in enumerate(routes):
             for j in range(i+1, len(routes)):
