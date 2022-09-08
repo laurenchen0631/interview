@@ -65,7 +65,8 @@
         "fstream": "cpp",
         "map": "cpp",
         "iostream": "cpp",
-        "ios": "cpp"
+        "ios": "cpp",
+        "stack": "cpp"
     },
     "python.formatting.provider": "yapf"
 }
