@@ -1,36 +1,40 @@
 class Solution:
     def exist(self, board: list[list[str]], word: str) -> bool:
-        if word == '':
-            return True
-        elif len(board) == 0:
-            return False
-        
-        for i in range(len(board)):
-            for j in range(len(board[0])):
-                if word[0] == board[i][j] and self.helper(board, (i, j), word, 0, set()):
-                    return True
-        return False
+        m = len(board)
+        n = len(board[0])
 
-    def helper(self, board: list[list[str]], p: tuple[int,int], word: str, index: int, visited: set[tuple[int,int]]) -> bool:
-        dirs = [(0,1), (1,0), (0,-1), (-1,0)]
-
-        if word[index] != board[p[0]][p[1]]:
-            return False
-        elif index == len(word) - 1:
-            return True
-        
-        visited.add(p)
-        res: bool = False
-        for d in dirs:
-            x = p[1] + d[1]
-            y = p[0] + d[0]
-            if 0 <= x < len(board[0]) and 0 <= y < len(board) and (t := (y,x)) not in visited:
-                res = res or self.helper(board, t, word, index+1, visited)
-            
-            if res:
+        def backtrack(row: int, col: int, suffix: str) -> bool:
+            # bottom case: we find match for each letter in the word
+            if len(suffix) == 0:
                 return True
-        visited.remove(p)
+
+            # Check the current status, before jumping into backtracking
+            if row < 0 or row == m or col < 0 or col == n or board[row][col] != suffix[0]:
+                return False
+
+            ret = False
+            # mark the choice before exploring further.
+            board[row][col] = '#'
+            # explore the 4 neighbor directions
+            for rowOffset, colOffset in [(0, 1), (1, 0), (0, -1), (-1, 0)]:
+                ret = backtrack(row + rowOffset, col + colOffset, suffix[1:])
+                # break instead of return directly to do some cleanup afterwards
+                if ret: break
+
+            # revert the change, a clean slate and no side-effect
+            board[row][col] = suffix[0]
+
+            # Tried all directions, and did not find any match
+            return ret
+
+        for row in range(m):
+            for col in range(n ):
+                if backtrack(row, col, word):
+                    return True
+
+        # no match found after all exploration
         return False
+
 
 if __name__ == '__main__':
     s = Solution()
