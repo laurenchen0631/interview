@@ -1,14 +1,11 @@
-import sys
 class Solution:
     def jump(self, nums: list[int]) -> int:
-        dp = [sys.maxsize] * len(nums)
-        dp[-1] = 0
-        for i in range(len(nums)-2, -1, -1):
-            if nums[i] == 0:
-                continue
-            end = min(i + nums[i], len(nums) - 1)
-            dp[i] = min(dp[j] for j in range(i+1, end+1)) + 1
-        return dp[0]
+        dp = [len(nums)+1] * len(nums)
+        dp[0] = 0
+        for i in range(len(nums)):
+            for j in range(i+1, min(i+nums[i]+1, len(nums))):
+                dp[j] = min(dp[j], dp[i]+1)
+        return dp[-1]
     
 s = Solution()
 print(s.jump([2,3,1,1,4]))
