@@ -1,11 +1,8 @@
 function areDeeplyEqual(o1: any, o2: any): boolean {
     if (o1 === o2) return true;
     if (typeof o1 !== "object" || typeof o2 !== "object") return false;
-    if (Object.keys(o1).length !== Object.keys(o2).length) return false;
-
-    // check array
     if (Array.isArray(o1) !== Array.isArray(o2)) return false;
-
+    if (Object.keys(o1).length !== Object.keys(o2).length) return false;
 
     for (let key in o1) {
         if (!o2.hasOwnProperty(key)) return false;
