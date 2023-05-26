@@ -12,7 +12,6 @@ fn dynamicArray(n: i32, queries: &[Vec<i32>]) -> Vec<i32> {
     let mut arr: Vec<Vec<i32>> = vec![Vec::new(); n as usize];
     let mut last = 0;
     for query in queries {
-        println!("{:?}", query);
         let t = *query.get(0).unwrap();
         let x = *query.get(1).unwrap();
         let y = *query.get(2).unwrap();
