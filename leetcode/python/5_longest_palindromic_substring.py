@@ -1,29 +1,20 @@
 class Solution:
     def longestPalindrome(self, s: str) -> str:
         n = len(s)
-        if n == 0:
-            return ""
-
-        dp = [[0] * n for _ in range(n)]
-        length = 1
-        start = 0
-        for i in range(n-1, -1, -1):
-            for j in range(i, n):
-                if i == j:
-                    dp[i][j] = 1
-                elif s[i] != s[j]:
-                    dp[i][j] = 0
-                else: #s[i] == s[j]
-                    if i < n-1 and j > i+1:
-                        dp[i][j] = (dp[i+1][j-1] + 2) if dp[i+1][j-1] else 0
-                    else: # base case: s[i] == s[i+1]
-                        dp[i][j] = 2
-
-                if dp[i][j] > length:
-                    length = dp[i][j]
-                    start = i
+        res = ''
+        dp = [[False] * n for _ in range(n)]
+        for i in range(n):
+            dp[i][i] = True
+            res = s[i]
         
-        return s[start:start+length]
+        for i in range(n-1, -1, -1):
+            for j in range(i+1, n):
+                if s[i] == s[j]:
+                    if j-i == 1 or dp[i+1][j-1]:
+                        dp[i][j] = True
+                        if len(res) < j - i + 1:
+                            res = s[i:j+1]
+        return res
 
 s = Solution()
 print(s.longestPalindrome("aa"))
