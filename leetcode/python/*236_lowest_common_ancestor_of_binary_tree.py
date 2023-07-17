@@ -31,3 +31,15 @@ class Solution:
             return root
         else:
             return l or r
+        
+    def LCA(self, node, p, q):
+        if node is None or node == p or node == q:
+            return node
+        left = self.LCA(node.left, p, q)
+        right = self.LCA(node.right, p, q)
+        if left and right:
+            return node
+        elif left:
+            return left
+        else:
+            return right
