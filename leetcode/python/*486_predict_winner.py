@@ -1,3 +1,6 @@
+from functools import lru_cache
+
+
 class Solution:
     def PredictTheWinner(self, nums: list[int]) -> bool:
         n = len(nums)
@@ -7,6 +10,20 @@ class Solution:
             for j in range(i+1, n):
                 dp[i][j] = max(nums[i] - dp[i+1][j], nums[j] - dp[i][j-1])
         return dp[0][-1] >= 0
+    
+    def predictWinner(self, nums: list[int]) -> bool:
+        n = len(nums)
+        
+        @lru_cache()
+        def maxDiff(l: int, r: int) -> int:
+            if l == r:
+                return nums[l]
+            score_left = nums[l] - maxDiff(l+1, r)
+            score_right = nums[r] - maxDiff(l, r-1)
+            return max(score_left, score_right)
+        
+        return maxDiff(0, n-1) >= 0
+        
 
 s = Solution()
 print(s.PredictTheWinner([1,5,2]))
