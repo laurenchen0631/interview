@@ -12,10 +12,25 @@ class Solution:
                 deletions += 1
             unique.add(freq[c])
         return deletions
+    
+    def minDeletionsOpt(self, s: str) -> int:
+        count = Counter(s)
+        freq = sorted(count.values(), reverse=True)
+        res = 0
+        # 3 2 1 1 1
+        for i in range(1, len(freq)):
+            if freq[i] >= freq[i-1]:
+                res += freq[i] - freq[i-1] + 1
+                freq[i] = freq[i-1] - 1
+                if freq[i] < 0:
+                    freq[i] = 0
+                    res -= 1
+        return res
 
 s = Solution()
 print(s.minDeletions(s = "aab"))
 print(s.minDeletions(s = "aaabbbcc"))
 print(s.minDeletions(s = "ceabaacb"))
+print(s.minDeletionsOpt(s = "abc"))
 
 
