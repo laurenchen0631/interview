@@ -1,16 +1,22 @@
 class Solution:
     def kWeakestRows(self, mat: list[list[int]], k: int) -> list[int]:
-        rows: list[tuple[int,int]] = []
+        weakest = []
         for i, row in enumerate(mat):
-            solider: int = 0
-            for p in row:
-                if p == 1:
-                    solider += 1
-                else:
-                    break
-            rows.append((solider, i))
-        rows.sort()
-        return [rows[j][1] for j in range(k)]
+            n = self.count_solider(row)
+            print(n)
+            weakest.append((n, i))
+        weakest.sort()
+        return [i for n, i in weakest[:k]]
+
+    def count_solider(self, arr: list[int]) -> int:
+        l, r = 0, len(arr)
+        while l < r:
+            m = (l+r) // 2
+            if arr[m] == 1:
+                l = m + 1
+            else:
+                r = m
+        return l
 
 s = Solution()
 print(s.kWeakestRows(mat = 
