@@ -2,15 +2,27 @@ class Solution:
     # [3, 5, 7, 1, 1, 2, 5, 9]
     # [6, 5, 4, 3, 2, 1]
     def maximumBooks(self, books: list[int]) -> int:
-        res = 0
+        n = len(books)
+
+        def calculateSum(l: int, r: int) -> int:
+            h = min(books[r], r - l + 1) # [2, 0]
+            bottom = books[r] - h + 1
+
+            return (books[r] + bottom) * h // 2
+        
         stack = []
-        for i in range(len(books)):
-            while stack and books[i] <= books[stack[-1][0]] + (i - stack[-1][0]):
+        dp = [0] * n
+
+        for i, book in enumerate(books):
+            # While we cannot push i, we pop from the stack
+            while stack and books[stack[-1]] - stack[-1] >= book - i:
                 stack.pop()
-            prev_end, prev_res = stack[-1] if stack else [-1, 0]
-            h = min(i - prev_end, books[i])
-            l1, l2 = books[i], books[i]-h+1
-            cur = prev_res + (l1 + l2) * h // 2
-            stack.append([i, cur])
-            res = max(res, cur)
-        return res
+            
+            if not stack:
+                dp[i] = calculateSum(0, i)
+            else:
+                j = stack[-1]
+                dp[i] = dp[j] + calculateSum(j+1, i)
+            stack.append(i)
+        
+        return max(dp)
