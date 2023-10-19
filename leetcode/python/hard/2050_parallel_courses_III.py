@@ -6,7 +6,6 @@ class Solution:
         topo = [i for i in range(n) if incoming[i] == 0]
         while topo:
             tmp = []
-            # prev_time = cur
             for course in topo:
                 t = time[course] + max_incoming[course]
                 for next_course in g[course]:
