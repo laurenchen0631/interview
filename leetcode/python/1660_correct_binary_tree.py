@@ -7,22 +7,22 @@ class TreeNode:
 
 class Solution:
     def correctBinaryTree(self, root: TreeNode) -> TreeNode:
-        q = [(root, None)]
+        q = [root]
         while q:
-            visited = set()
             tmp = []
-            for node, parent in q:
-                if node.right in visited:
-                    if parent.left == node:
-                        parent.left = None
-                    else:
-                        parent.right = None
-                    return root
-
-                visited.add(node)
-                
+            visited = set()
+            for node in q:
                 if node.right:
-                    tmp.append((node.right, node))
+                    tmp.append(node.right)
+                    visited.add(node.right)
+                    if node.right.right and node.right.right in visited:
+                        node.right = None
+                        return root
+                        
                 if node.left:
-                    tmp.append((node.left, node))
+                    tmp.append(node.left)
+                    visited.add(node.left)
+                    if node.left.right and node.left.right in visited:
+                        node.left = None
+                        return root
             q = tmp
