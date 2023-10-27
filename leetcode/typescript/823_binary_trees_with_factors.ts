@@ -7,13 +7,13 @@ function numFactoredBinaryTrees(arr: number[]): number {
     const dp = new Array(arr.length).fill(1);
     for (const [i, n] of arr.entries()) {
         const upper = Math.sqrt(n);
-        for (let j = 0; arr[j] <= upper; j++) {
-            const rem = n % arr[j];
-            const k = n / arr[j];
-            if (rem === 0 && index.has(k)) {
-                dp[i] += dp[j] * dp[index.get(k)!];
-                if (k !== arr[j]) {
-                    dp[i] += dp[j] * dp[index.get(k)!];
+        for (let l = 0; arr[l] <= upper; l++) {
+            const rem = n % arr[l];
+            const r = index.get(n / arr[l]);
+            if (rem === 0 && r !== undefined) {
+                dp[i] += dp[l] * dp[r];
+                if (arr[r] !== arr[l]) {
+                    dp[i] += dp[l] * dp[r];
                 }
                 dp[i] %= (10 ** 9 + 7);
             }
@@ -21,5 +21,5 @@ function numFactoredBinaryTrees(arr: number[]): number {
         }
     }
 
-    return dp.reduce((a, b) => a + b, 0) % (10 ** 9 + 7);
+    return dp.reduce((a, b) => (a + b) % (10 ** 9 + 7), 0);
 };
