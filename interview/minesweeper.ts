@@ -75,7 +75,6 @@ const bfs = (start: [number, number], board: Cell[][]) => {
         res.push([ii, jj]);
         if (board[ii][jj].adjacentMines === 0) {
           tmp.push([ii, jj]);
-          console.log([ii, jj])
         }
       }
     }
@@ -95,10 +94,10 @@ for (const row of board) {
 console.log(bfs([0, 0], board));
 
 interface Cell {
-isMine: boolean;
-isClicked: boolean;
-isFlagged: boolean;
-adjacentMines: number;
+  isMine: boolean;
+  isClicked: boolean;
+  isFlagged: boolean;
+  adjacentMines: number;
 }
 
 interface AppProps {
