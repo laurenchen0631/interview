@@ -4,8 +4,11 @@ from bisect import bisect_left
 class Solution:
     def maxEnvelopes(self, envelopes: list[list[int]]) -> int:
         envelopes.sort(key=lambda e: (e[0], -e[1]))
+        print(envelopes)
         return self.LIS([e[1] for e in envelopes])
     
+    # [1, 5, 10, 2, 3, 4]
+    # [1, 5, 10] -> [1, 2, 3, 4]
     def LIS(self, nums: list[int]) -> int:
         dp = []
         for n in nums:

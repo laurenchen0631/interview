@@ -1,4 +1,4 @@
-from typing import Counter
+from collections import Counter
 
 
 class Solution:
@@ -7,7 +7,7 @@ class Solution:
         remaining = len(t)
         curL = l = 0
         minLen = len(s) + 1
-        for r in range(len(s)):
+        for r, c in enumerate(s):
             if counter[s[r]] > 0:
                 remaining -= 1
             counter[s[r]] -= 1

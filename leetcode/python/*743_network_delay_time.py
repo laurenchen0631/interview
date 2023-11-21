@@ -7,17 +7,17 @@ class Solution:
             graph[u].append((v, t))
         visited = set[int]()
         q = [(0, k)]
-        total: int = 0
+        res: int = 0
         while q:
             t, u = heapq.heappop(q)
             if u in visited:
                 continue
             visited.add(u)
-            total = max(total, t)
+            res = max(res, t)
             for v, c in graph[u]:
                 if v not in visited:
                     heapq.heappush(q, (t+c, v))
-        return total if len(visited) == n else -1
+        return res if len(visited) == n else -1
             
 
 s = Solution()

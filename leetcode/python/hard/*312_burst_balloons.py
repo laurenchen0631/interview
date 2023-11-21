@@ -11,6 +11,7 @@ class Solution:
             
             res: int = 0
             for i in range(left, right + 1):
+                # instead of popping the balloon, we can think of it as the last balloon to be popped, thus it is not nums[i-1] * nums[i] * nums[i+1]
                 gain = nums[left-1] * nums[i] * nums[right+1]
                 remaining = dp(left,i-1) + dp(i+1, right)
                 res = max(res, gain + remaining)
