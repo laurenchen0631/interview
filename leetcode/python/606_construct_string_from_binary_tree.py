@@ -6,20 +6,14 @@ class TreeNode:
 
 class Solution:
     def tree2str(self, root: TreeNode | None) -> str:
-        res: list[int] = []
-        def preorder(root: TreeNode | None) -> None:
+        def postorder(root):
             if not root:
-                return
-            res.append(str(root.val))
-            if root.left:
-                res.append('(')
-                preorder(root.left)
-                res.append(')')
-            if root.right:
-                if not root.left:
-                    res.append('()')
-                res.append('(')
-                preorder(root.right)
-                res.append(')')
-        preorder(root)
-        return ''.join(res)
+                return ''
+            if not root.left and not root.right:
+                return str(root.val)
+            if not root.right:
+                return str(root.val) + '(' + postorder(root.left) + ')'
+            return str(root.val) + '(' + postorder(root.left) + ')(' + postorder(root.right) + ')'
+
+        return postorder(root)
+        
